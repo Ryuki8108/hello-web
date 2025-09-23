@@ -2,16 +2,23 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ToDoリスト</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <main>
     <h1>ToDoリスト</h1>
-    <input id="taskInput" type="text" placeholder="やることを入力">
-    <button id="addBtn">追加</button>
-    <ul id="taskList"></ul>
+
+    <form id="addForm">
+      <input id="taskInput" type="text" placeholder="やることを入力" required />
+      <input id="dueInput" type="date" />
+      <button id="addBtn" type="submit">追加</button>
+    </form>
+
+    <ul id="taskList" aria-live="polite"></ul>
   </main>
+
   <script src="./app.js"></script>
 </body>
 </html>

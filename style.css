@@ -1,7 +1,66 @@
-body { font-family: sans-serif; background: #f7f7f8; margin: 2rem; }
-h1 { margin-bottom: 1rem; }
-#taskInput { padding: .5rem; width: 200px; }
-#addBtn { margin-left: .5rem; padding: .5rem 1rem; }
-ul { list-style: none; padding: 0; margin-top: 1rem; }
-li { background: #fff; margin: .3rem 0; padding: .5rem; border: 1px solid #ccc; display: flex; justify-content: space-between; }
-button.delete { background: #f55; color: white; border: none; padding: .3rem .6rem; cursor: pointer; }
+:root{
+  --bg:#f7f7f8;
+  --card:#fff;
+  --text:#222;
+  --muted:#666;
+  --border:#ccc;
+
+  --overdue:#e53935;   /* 期限切れ */
+  --today:#fb8c00;     /* 今日 */
+  --soon:#fdd835;      /* 3日以内 */
+  --ok:#2e7d32;        /* 余裕あり/完了 */
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1115;
+    --card:#171920;
+    --text:#e6e6e6;
+    --muted:#9aa0a6;
+    --border:#2a2f3a;
+
+    --overdue:#ff6b6b;
+    --today:#ffb74d;
+    --soon:#fff176;
+    --ok:#81c784;
+  }
+}
+
+*{ box-sizing: border-box; }
+body{ font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+      background: var(--bg); color: var(--text); margin: 0; }
+main{ max-width: 720px; margin: 3rem auto; padding: 0 1rem; }
+
+h1{ margin: 0 0 1rem; }
+
+form{
+  display:flex; gap:.5rem; flex-wrap:wrap;
+  background: var(--card); border:1px solid var(--border); padding:.75rem; border-radius:.75rem;
+}
+#taskInput{ flex: 1 1 260px; padding:.6rem; }
+#dueInput{ padding:.6rem; }
+#addBtn{ padding:.6rem 1rem; cursor:pointer; }
+
+ul{ list-style:none; padding:0; margin:1rem 0 0; display:grid; gap:.5rem; }
+li.item{
+  display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+  background: var(--card); border:1px solid var(--border); border-radius:.75rem; padding:.6rem .75rem;
+}
+
+.info{ display:flex; align-items:center; gap:.6rem; }
+.title{ font-weight:600; }
+.date{ font-size:.9rem; color:var(--muted); }
+
+.badge{ padding:.2rem .5rem; border-radius:.5rem; font-size:.8rem; font-weight:600; }
+.badge.overdue{ background: var(--overdue); color:#000; }
+.badge.today{ background: var(--today); color:#000; }
+.badge.soon{ background: var(--soon); color:#000; }
+.badge.ok{ background: var(--ok); color:#000; }
+
+.actions{ display:flex; gap:.4rem; }
+button.small{
+  padding:.35rem .6rem; border:1px solid var(--border);
+  background:transparent; color:var(--text); cursor:pointer; border-radius:.5rem;
+}
+button.small:hover{ opacity:.85; }
+.completed .title{ text-decoration: line-through; opacity:.7; }
